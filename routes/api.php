@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartItemsController;
 use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CategoriesController;
@@ -14,32 +15,32 @@ use Illuminate\Support\Facades\Route;
 
 //Test API routes
 
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'users'
+    ], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refreshToken', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+    });
+    Route::get('users/verify-email', [AuthController::class, 'verifyEmail'])->name('verify.email');
+
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::middleware('api')->group(function () {
+Route::group(['middleware' => ['auth:api']],function () {
     Route::resource('categories', CategoriesController::class);//Done
-});
-Route::middleware('api')->group(function () {
     Route::resource('menus', MenusController::class);//Done
-});
-Route::middleware('api')->group(function () {
     Route::resource('carts', CartsController::class);//Done
-});
-Route::middleware('api')->group(function () {
     Route::resource('articles', ArticlesController::class);//Done
-});
-Route::middleware('api')->group(function () {
     Route::resource('orders', OrdersController::class);//Done
-});
-Route::middleware('api')->group(function () {
     Route::resource('userProfiles', UserProfileController::class);//Done
-});
-Route::middleware('api')->group(function () {
     Route::resource('orderItems', OrderItemController::class);//Done
-});
-Route::middleware('api')->group(function () {
     Route::resource('cartItems', CartItemsController::class);//Done
 });
+
 
