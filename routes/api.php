@@ -32,15 +32,14 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::group(['middleware' => ['auth:api']],function () {
-    Route::resource('categories', CategoriesController::class);//Done
-    Route::resource('menus', MenusController::class);//Done
-    Route::resource('carts', CartsController::class);//Done
-    Route::resource('articles', ArticlesController::class);//Done
-    Route::resource('orders', OrdersController::class);//Done
-    Route::resource('userProfiles', UserProfileController::class);//Done
-    Route::resource('orderItems', OrderItemController::class);//Done
-    Route::resource('cartItems', CartItemsController::class);//Done
-});
+Route::resource('categories', CategoriesController::class);//Done
+Route::resource('menus', MenusController::class);//Done
+Route::resource('carts', CartsController::class);//Done
+Route::resource('articles', ArticlesController::class);//Done
+Route::resource('orders', OrdersController::class);//Done
+Route::resource('userProfiles', UserProfileController::class);//Done
+Route::resource('orderItems', OrderItemController::class);//Done
+Route::resource('cartItems', CartItemsController::class);//Done
+
 
 
