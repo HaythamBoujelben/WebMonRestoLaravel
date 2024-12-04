@@ -74,7 +74,7 @@ class CartItemsController extends Controller
         }
     }
 
-    public function getCartItemsByCartID($cartId)
+    public function getCartItemsByCart($cartId)
     {
         try {
             $cartItems = CartItems::where('cartId', $cartId)->get();  // Filter by cartId

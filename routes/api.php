@@ -41,7 +41,7 @@ Route::resource('userProfiles', UserProfileController::class);//Done
 Route::resource('orderItems', OrderItemController::class);//Done
 Route::resource('cartItems', CartItemsController::class);//Done
 
-Route::get('/cartitems/cartId/{cartId}', [CartItemsController::class, 'getCartItemsByCartID']);
+Route::get('/cartitems/cart/{cartId}', [CartItemsController::class, 'getCartItemsByCart']);
 
 Route::get('/articles/category/{categoryId}', [ArticlesController::class, 'getByCategory']);
 
