@@ -77,6 +77,8 @@ class ArticlesController extends Controller
 
     public function getByCategory($categoryId)
 {
+    dd('ydek');
+
     try {
         $articles = Articles::where('categoryId', $categoryId)->get();
         return response()->json($articles);

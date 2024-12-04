@@ -76,6 +76,7 @@ class CartItemsController extends Controller
 
     public function getCartItemsByCart($cartId)
     {
+    
         try {
             $cartItems = CartItems::where('cartId', $cartId)->get();  // Filter by cartId
             if ($cartItems->isEmpty()) {
