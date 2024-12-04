@@ -24,7 +24,7 @@ class CartsController extends Controller
     {
         try {
             $cart = new Carts([
-                "userId" => $request->input("userId"),
+                "userId" => $request->input("UserId"),
             ]);
             $cart->save();
 
