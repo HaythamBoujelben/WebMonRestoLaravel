@@ -74,4 +74,14 @@ class ArticlesController extends Controller
             return response()->json("probleme de suppression de article {$e->getMessage()}");
         }
     }
+
+    public function getByCategory($categoryId)
+{
+    try {
+        $articles = Articles::where('categoryId', $categoryId)->get();
+        return response()->json($articles);
+    } catch (\Exception $e) {
+        return response()->json("Problème de récupération des articles par catégorie {$e->getMessage()}");
+    }
+}
 }
