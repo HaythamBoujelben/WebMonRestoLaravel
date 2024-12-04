@@ -73,4 +73,17 @@ class CartItemsController extends Controller
             return response()->json("probleme de suppression de CartItems {$e->getMessage()}");
         }
     }
+
+    public function getCartItemsByCartID($cartId)
+    {
+        try {
+            $cartItems = CartItems::where('cartId', $cartId)->get();  // Filter by cartId
+            if ($cartItems->isEmpty()) {
+                return response()->json("Aucun article trouvé pour ce cartId", 404);
+            }
+            return response()->json($cartItems);
+        } catch (\Exception $e) {
+            return response()->json("Probleme de récupération des articles pour cartId {$cartId}: {$e->getMessage()}", 500);
+        }
+    }
 }
