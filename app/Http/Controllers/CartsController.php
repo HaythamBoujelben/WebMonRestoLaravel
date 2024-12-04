@@ -23,11 +23,6 @@ class CartsController extends Controller
     public function store(Request $request)
     {
         try {
-            // Check if the UserId exists in the userProfiles table
-            $user = UserProfile::find($request->input("UserId"));
-            if (!$user) {
-                return response()->json(['error' => 'User not found in userProfiles'], 404);
-            }
             $cart = new Carts([
                 "userId" => $request->input("userId"),
             ]);
